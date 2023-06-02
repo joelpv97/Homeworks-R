@@ -1,0 +1,120 @@
+
+Que es una funcion?
+
+Una funcion es un conjunto de instrucciones que convierten las entradas en resultados deseados. 
+
+Partes de una funcion:
+
+  Entradas o argumentos: Es la informacion necesaria para realizar el procedimiento
+  de la funcion. Los argumentos pueden estar vacios, a la espera de que el usuario
+  les de un valor o pueden tener valores por defecto. Una funcion puede tener o no 
+  argumentos de entrada. 
+  
+  Cuerpo: Conjunto de instrucciones que transforman las entradas en las salidas 
+  deseadas. 
+  
+  salidas: Son el resultado de la funcion.
+  
+
+Estructura basica de una funcion 
+
+```{r}
+Nombre_funcion <- function(variables) {
+  cuerpo
+  cuerpo
+  cuerpo
+  
+  return(resultado)
+}
+
+#ejemplo 1
+Saludar <- function(nombre) {
+  paste("Hola", nombre)
+  
+}
+Saludar(nombre = "Mi nombre es Joel")
+
+#ejemplo 2
+Programando <- function(persona) {
+  paste(persona, "programando")
+  
+}
+Programando(persona = "Estudiante")
+
+#ejemplo 3
+Operacion <- function(x , y, z) {
+  resultado <- ((x+y)*2)/z
+  return(resultado)
+}
+Operacion(x=3, y=4, z=2)
+
+```
+Familia apply
+
+lapply aplica una funcion a cada elemento de un vector, lista o df y tiene como 
+salida una lista, la sintaxis es;
+
+  lapply(x, FUN)
+  
+  x = es la lista, vector o df
+  FUN = es la operacion especifica a realizar
+  
+```{r}
+tabla <- data.frame(a = c(10,13,7,12,9),
+                    b = c(1, 4, 6, 2,8),
+                    c = c(1,2,10, 11,4))
+
+lapply(tabla, function(tabla)tabla*10)
+funcion  <- function(tabla)tabla*10
+
+
+
+```
+
+sapply
+Esta funcion se utiliza cuando se desee aplicar una funcion a cada elemento de una 
+lista, vector, o df pero la diferencia es que el resultado se obtiene como vector. 
+
+
+```{r}
+tabla <- data.frame(a = c(10,13,7,12,9),
+                    b = c(1, 4, 6, 2,8),
+                    c = c(1,2,10, 11,4))
+
+sapply(tabla, mean)
+
+matrix <- sapply(tabla, function(tabla) tabla*10)
+matrix
+```
+
+
+vapply
+
+La funcion vapply se utiliza para aplicar una funcion utilizando un vector y 
+devuelve como resultado un vector con el dato esperado. La estructura de la funcion
+vapply es la siguiente;
+
+vapply(X, FUN, FUN.Value, arg)
+
+X -- es el vector o lista sobre el cual se aplicara la funcion 
+FUN-- es la funcion que se aplicara a cada elemento de X
+FUN.value -- es el valor de retorno esperado de FUN
+arg-- Argumentos adicionales que se pasan a FUN
+
+vapply es similar a vapply pero esta ultima requiere que se especifique el tipo
+de valor de retorno esperado. 
+
+```{r}
+
+my_vector <- c(1,2,3,4,5)
+
+result <- vapply(my_vector, function(x) x+1, FUN.VALUE = numeric(1))
+
+result
+
+```
+  
+  
+
+
+
