@@ -7,7 +7,7 @@ library(dplyr)
 library(ggplot2)
 
 info_t <- dataset_results <- read.csv(file.choose(),header=TRUE, sep = ",")
-str(info_t)
+glimpse(info_t)
 
 #DISPERSION
 #1.1
@@ -105,8 +105,29 @@ ggplot(filtered_price, aes(x=cut, y=depth, fill = clarity))+
 
 #Grouping and summarizing
 
+#1
+median_dimension_diamond <- diamonds %>%
+  group_by(cut)%>%
+  summarize(mediaX = median(x), mediaY = median(y), mediaZ=median(z))
+
+print(median_dimension_diamond)
 
 
+
+#2
+
+
+cut_premium <- diamonds %>%
+  filter(cut == "Premium")%>%
+  group_by(clarity)%>%
+  summarize(minPrice = min(price), maxPrice=max(price))
+
+print(cut_premium)
+
+#3
+
+ggplot(cut_premium, aes(x=clarity, y=maxPrice, fill=clarity))+
+  geom_col()
 
 ```
 
