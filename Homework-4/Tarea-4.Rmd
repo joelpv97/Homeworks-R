@@ -7,7 +7,7 @@ library(dplyr)
 library(ggplot2)
 
 info_t <- dataset_results <- read.csv(file.choose(),header=TRUE, sep = ",")
-glimpse(info_t)
+str(info_t)
 
 #DISPERSION
 #1.1
@@ -100,6 +100,12 @@ ggplot(filtered_price, aes(x=cut, y=depth))+
 ggplot(filtered_price, aes(x=cut, y=depth, fill = clarity))+
   geom_col()+
   facet_grid(. ~ clarity)
+
+
+
+#Grouping and summarizing
+
+
 
 
 ```
